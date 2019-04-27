@@ -7,7 +7,7 @@ import model.DAO.FuncionarioDAO;
 
 public class Funcionario extends Usuario {
 
-	// Atributos básicos
+	// Atributos básicos de funcionário
 	private int matricula;
 	private String nome;
 	private String cargo;
@@ -23,10 +23,10 @@ public class Funcionario extends Usuario {
 	private List<Dependente> dependentes;
 	private Beneficio beneficios;
 
-	// CONSTRUTOR COMPLETO FUNCIONARIO + USUARIO
-	public Funcionario(String login, String senha, Permissoes nivel, boolean status, boolean manterLogado,
-			boolean logado, int matricula, String nome, String cargo, boolean situacao, Contrato contrato, Local local,
-			DadosFun dados, Endereco endFun, List<Dependente> dependentes, Beneficio beneficios, DocFun documentos,
+	// Objeto de funcionário completo + Objeto de usuário
+	public Funcionario(int login, String senha, Permissoes nivel, boolean status, boolean manterLogado, boolean logado,
+			int matricula, String nome, String cargo, boolean situacao, Contrato contrato, Local local, DadosFun dados,
+			Endereco endFun, List<Dependente> dependentes, Beneficio beneficios, DocFun documentos,
 			DadosBancarios dadosBanco, HistFun historico) {
 		super(login, senha, nivel, status, manterLogado, logado);
 		this.matricula = matricula;
@@ -44,7 +44,7 @@ public class Funcionario extends Usuario {
 		this.historico = historico;
 	}
 
-	// CONSTRUTOR OBJETO DE FUNCIONARIO
+	// Objeto de funcionário completo
 	public Funcionario(int matricula, String nome, String cargo, boolean situacao, Contrato contrato, Local local,
 			DadosFun dados, Endereco endFun, List<Dependente> dependentes, Beneficio beneficios, DocFun documentos,
 			DadosBancarios dadosBanco, HistFun historico) {
@@ -64,22 +64,17 @@ public class Funcionario extends Usuario {
 		this.historico = historico;
 	}
 
-	// CONSTRUTOR OBJETO DE USUARIO
-	public Funcionario(String login, String senha, Permissoes nivel, boolean status, boolean manterLogado,
+	// Objeto de usuário simples
+	public Funcionario(int login, String senha, Permissoes nivel, boolean status, boolean manterLogado,
 			boolean logado) {
 		super(login, senha, nivel, status, manterLogado, logado);
 	}
 
-	// CONSTRUTOR OBJETO DE FUNCIONARIO SIMPLES
-	public Funcionario(int matricula, String nome, String cargo, boolean situacao) {
-		super();
-		this.matricula = matricula;
-		this.nome = nome;
-		this.cargo = cargo;
-		this.situacao = situacao;
+	public Funcionario(int login, String senha) {
+		super(login, senha);
 	}
 
-	// CONSTRUTOR COMPLETO PARA TABELA DO BD
+	// Objeto de funcionário simples
 	public Funcionario(int matricula, String nome, String cargo, boolean situacao, Contrato contrato, Local local) {
 		super();
 		this.matricula = matricula;
@@ -90,7 +85,7 @@ public class Funcionario extends Usuario {
 		this.local = local;
 	}
 
-	// CONSTRUTOR PARA NOMES DE FUNCIONARIO
+	// Construtor de nomes
 	public Funcionario(String nome) {
 		super();
 		this.nome = nome;
@@ -205,6 +200,7 @@ public class Funcionario extends Usuario {
 		return getNome() + " " + getMatricula();
 	}
 
+	// Busca no banco e monta uma JCBox com os objetos de 'cargo'
 	public static JComboBox<String> boxCargos() {
 
 		JComboBox<String> cbox = new JComboBox<String>();

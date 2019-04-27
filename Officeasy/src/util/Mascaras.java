@@ -296,9 +296,7 @@ public class Mascaras {
 	}
 
 	public boolean verificarCampoVazio(String campo) {
-		
-		
-		
+
 		return false;
 	}
 

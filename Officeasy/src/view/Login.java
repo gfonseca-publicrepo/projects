@@ -7,19 +7,22 @@ import java.awt.event.FocusListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import controller.Officeasy;
 import javax.swing.JPasswordField;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.awt.BorderLayout;
 
 public class Login extends JFrame {
+	/**
+	 * @author Gabriel Fonseca
+	 */
 
 	private static final long serialVersionUID = 1L;
 
@@ -27,36 +30,17 @@ public class Login extends JFrame {
 
 		super();
 
+		getContentPane().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+
+		// Componentes e Layout
+
 		JButton fazerLogin = new JButton("Login");
 
 		JButton cancelar = new JButton("Sair");
 
-		fazerLogin.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				// if (OfficeEasy.efetuarLogin(usu.getText(), sen.getText())) {
-				// dispose();
-				// }
-
-				new Principal(null);
-				dispose();
-
-			}
-		});
-
-		cancelar.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-
-			}
-		});
-
 		JPanel panel3 = new JPanel();
-		panel3.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		FlowLayout fl_panel3 = new FlowLayout(FlowLayout.CENTER, 5, 5);
+		panel3.setLayout(fl_panel3);
 		panel3.add(fazerLogin);
 		panel3.add(cancelar);
 
@@ -67,24 +51,9 @@ public class Login extends JFrame {
 		getContentPane().add(login);
 
 		JLabel labelIcon = new JLabel("");
+		labelIcon.setHorizontalAlignment(SwingConstants.CENTER);
 		labelIcon.setIcon(new ImageIcon(Login.class.getResource("/imagens/loginLogo.png")));
-		GroupLayout gl_login = new GroupLayout(login);
-		gl_login.setHorizontalGroup(gl_login.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_login.createSequentialGroup()
-						.addGroup(gl_login.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_login.createSequentialGroup().addContainerGap().addComponent(panel0,
-										GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE))
-								.addGroup(gl_login.createSequentialGroup().addContainerGap().addComponent(panel3,
-										GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE))
-								.addGroup(gl_login.createSequentialGroup().addGap(88).addComponent(labelIcon)))
-						.addContainerGap()));
-		gl_login.setVerticalGroup(gl_login.createParallelGroup(Alignment.TRAILING).addGroup(Alignment.LEADING, gl_login
-				.createSequentialGroup().addContainerGap()
-				.addComponent(panel0, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-				.addPreferredGap(ComponentPlacement.RELATED)
-				.addComponent(panel3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-				.addPreferredGap(ComponentPlacement.RELATED).addComponent(labelIcon)
-				.addContainerGap(130, Short.MAX_VALUE)));
+		login.setLayout(new BorderLayout(0, 0));
 		panel0.setLayout(new GridLayout(0, 1, 0, 0));
 
 		JLabel usuario = new JLabel("Login");
@@ -100,8 +69,11 @@ public class Login extends JFrame {
 		JPasswordField sen = new JPasswordField();
 		panel0.add(sen);
 		sen.setColumns(14);
+		login.add(panel0, BorderLayout.NORTH);
+		login.add(panel3, BorderLayout.CENTER);
+		login.add(labelIcon, BorderLayout.SOUTH);
 
-		// DICA DE TEXTO "LOGIN"
+		// Dica de Texto (Campos de Login)
 		usu.addFocusListener(new FocusListener() {
 
 			@Override
@@ -119,15 +91,49 @@ public class Login extends JFrame {
 
 			}
 		});
-		login.setLayout(gl_login);
 
-		setTitle("Officeasy - Gestão Inteligente");
-		setSize(382, 264);
+		// Funções
+		fazerLogin.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				try {
+
+					String pw = new String(sen.getPassword()).trim();
+
+					if (Officeasy.efetuarLogin(Integer.parseInt(usu.getText().trim()), pw)) { // Verifica se é possivel
+																								// fazer login
+
+						dispose();
+
+					}
+
+				} catch (NumberFormatException n) {
+
+					JOptionPane.showMessageDialog(null, "Login inválido");
+
+				}
+
+			}
+		});
+
+		cancelar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+
+			}
+		});
+
+		setTitle("officEasy - Gestão Inteligente");
+		setSize(320, 200);
 		setResizable(false);
 		setVisible(true);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagens/icon.png")));
-
 	}
+
 }

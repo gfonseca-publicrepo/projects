@@ -16,11 +16,17 @@ import util.MySQL;
 
 public class UsuarioDAO extends MySQL {
 
-	public static boolean buscarPorLoginSenha(String login, String senha) {
+	/**
+	 * @author Gabriel Fonseca
+	 */
+
+	public static Funcionario buscaPorLogin(String login) {
 
 		try {
 
-			String sql = "select * from usuario where nomeUsu = ? and senha = ?";
+			Funcionario usu = null;
+
+			String sql = "select * from usuario where login = ?";
 
 			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
@@ -29,17 +35,18 @@ public class UsuarioDAO extends MySQL {
 			PreparedStatement comando = con.prepareStatement(sql);
 
 			comando.setString(1, login);
-			comando.setString(2, senha);
 
 			ResultSet rs = comando.executeQuery();
 
 			if (rs.next()) {
 
+				usu = new Funcionario(rs.getInt("login"), rs.getString("senha"));
+
 				rs.close();
 				comando.close();
 				con.close();
 
-				return true;
+				return usu;
 
 			}
 
@@ -53,7 +60,7 @@ public class UsuarioDAO extends MySQL {
 
 		}
 
-		return false;
+		return null;
 
 	}
 
@@ -83,11 +90,11 @@ public class UsuarioDAO extends MySQL {
 
 	}
 
-	public static void alterarStatus(String nomeUsu, boolean status) {
+	public static void alterarStatus(int login, boolean status) {
 
 		try {
 
-			String sql = "update usuario set logado = ? WHERE nomeUsu = ?";
+			String sql = "update usuario set logado = ? WHERE login = ?";
 
 			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
@@ -96,7 +103,7 @@ public class UsuarioDAO extends MySQL {
 			PreparedStatement comando = con.prepareStatement(sql);
 
 			comando.setBoolean(1, status);
-			comando.setString(2, nomeUsu);
+			comando.setInt(2, login);
 
 			comando.executeUpdate();
 
@@ -135,7 +142,7 @@ public class UsuarioDAO extends MySQL {
 
 	}
 
-	public static void inserirUsuario(String login, String senha, Permissoes nivel, int matricula) {
+	public static void inserirUsuario(int login, String senha, Permissoes nivel, int matricula) {
 
 		try {
 
@@ -147,7 +154,7 @@ public class UsuarioDAO extends MySQL {
 
 			PreparedStatement comando = con.prepareStatement(sql);
 
-			comando.setString(1, login);
+			comando.setInt(1, login);
 			comando.setString(2, senha);
 			comando.setBoolean(3, true);
 			comando.setBoolean(4, false);
@@ -155,30 +162,28 @@ public class UsuarioDAO extends MySQL {
 			comando.setInt(6, nivel.getId());
 
 			comando.executeUpdate();
-			
+
 			comando.close();
 			con.close();
 
-			FuncionarioDAO.inserirFKUsuario(matricula, login);
-
 		} catch (Exception e) {
-
-			JOptionPane.showMessageDialog(null, e.getMessage());
-			System.out.println(e.getMessage());
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Já existe um usuário para esta matricula",
+					"Não foi possível concluir esta ação", 0);
 		}
 
 		JOptionPane.showMessageDialog(null, MySQL.getMSG());
 
 	}
 
-	public static Funcionario selecionarUsuario(String login) {
+	public static Funcionario selecionarUsuario(int login) {
 
 		Permissoes perm;
 		Funcionario usu = null;
 
 		try {
 
-			String sql = "select * from usuario where nomeUsu = ?";
+			String sql = "select * from usuario where login = ?";
 
 			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
@@ -186,7 +191,7 @@ public class UsuarioDAO extends MySQL {
 
 			PreparedStatement comando = con.prepareStatement(sql);
 
-			comando.setString(1, login);
+			comando.setInt(1, login);
 
 			ResultSet rs = comando.executeQuery();
 
@@ -194,7 +199,7 @@ public class UsuarioDAO extends MySQL {
 
 				perm = PermissoesDAO.selecionar(rs.getInt("FKNivel"));
 
-				usu = new Funcionario(rs.getString("nomeUsu"), rs.getString("senha"), perm, rs.getBoolean("status"),
+				usu = new Funcionario(rs.getInt("login"), rs.getString("senha"), perm, rs.getBoolean("status"),
 						rs.getBoolean("manterLogado"), rs.getBoolean("logado"));
 
 			}
@@ -205,7 +210,7 @@ public class UsuarioDAO extends MySQL {
 
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
-			JOptionPane.showMessageDialog(null, "Usu�rio n�o encontrado!");
+			JOptionPane.showMessageDialog(null, "Usuário não encontrado!");
 		}
 
 		return usu;
@@ -234,7 +239,7 @@ public class UsuarioDAO extends MySQL {
 
 				perm = PermissoesDAO.selecionar(rs.getInt("FKNivel"));
 
-				usu = new Funcionario(rs.getString("nomeUsu"), rs.getString("senha"), perm, rs.getBoolean("status"),
+				usu = new Funcionario(rs.getInt("login"), rs.getString("senha"), perm, rs.getBoolean("status"),
 						rs.getBoolean("manterLogado"), rs.getBoolean("logado"));
 
 			}
@@ -245,7 +250,7 @@ public class UsuarioDAO extends MySQL {
 
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
-			JOptionPane.showMessageDialog(null, "Usu�rio n�o encontrado!");
+			JOptionPane.showMessageDialog(null, "Usuário não encontrado!");
 		}
 
 		return usu;
@@ -275,7 +280,7 @@ public class UsuarioDAO extends MySQL {
 
 				if (rs.next()) {
 					perm = PermissoesDAO.selecionar(rs.getInt("FKNivel"));
-					usu = new Funcionario(rs.getString("nomeUsu"), rs.getString("senha"), perm, rs.getBoolean("status"),
+					usu = new Funcionario(rs.getInt("login"), rs.getString("senha"), perm, rs.getBoolean("status"),
 							rs.getBoolean("manterLogado"), rs.getBoolean("logado"));
 
 					listaUsu.add(usu);
@@ -317,7 +322,7 @@ public class UsuarioDAO extends MySQL {
 
 				if (rs.next()) {
 					perm = PermissoesDAO.selecionar(rs.getInt("FKNivel"));
-					usu = new Funcionario(rs.getString("nomeUsu"), rs.getString("senha"), perm, rs.getBoolean("status"),
+					usu = new Funcionario(rs.getInt("login"), rs.getString("senha"), perm, rs.getBoolean("status"),
 							rs.getBoolean("manterLogado"), rs.getBoolean("logado"));
 
 					listaUsu.add(usu);
@@ -361,7 +366,7 @@ public class UsuarioDAO extends MySQL {
 
 				if (rs.next()) {
 					perm = PermissoesDAO.selecionar(rs.getInt("FKNivel"));
-					usu = new Funcionario(rs.getString("nomeUsu"), rs.getString(""), perm, rs.getBoolean("status"),
+					usu = new Funcionario(rs.getInt("login"), rs.getString(""), perm, rs.getBoolean("status"),
 							rs.getBoolean("manterLogado"), rs.getBoolean("logado"));
 
 					listaUsu.add(usu);
@@ -405,7 +410,7 @@ public class UsuarioDAO extends MySQL {
 
 				if (rs.next()) {
 					perm = PermissoesDAO.selecionar(rs.getInt("FKNivel"));
-					usu = new Funcionario(rs.getString("nomeUsu"), rs.getString(""), perm, rs.getBoolean("status"),
+					usu = new Funcionario(rs.getInt("login"), rs.getString(""), perm, rs.getBoolean("status"),
 							rs.getBoolean("manterLogado"), rs.getBoolean("logado"));
 
 					listaUsu.add(usu);
@@ -441,7 +446,7 @@ public class UsuarioDAO extends MySQL {
 			comando.setString(1, usuario.getSenha());
 			comando.setBoolean(2, usuario.getStatus());
 			comando.setInt(3, perm.getId());
-			comando.setString(4, usuario.getLogin());
+			comando.setInt(4, usuario.getLogin());
 
 			comando.executeUpdate();
 

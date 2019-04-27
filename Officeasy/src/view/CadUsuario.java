@@ -90,20 +90,11 @@ public class CadUsuario extends JDialog {
 
 					JOptionPane.showMessageDialog(null, "Matrícula invalida.");
 					return;
-				} else if (FuncionarioDAO.verificarUsuario(Integer.parseInt(matriculaText.getText()))) { // VERIFICANDO
-																											// SE A
-																											// MATRICULA
-																											// JA POSSUI
-																											// UM
-																											// USUARIO
-
-					JOptionPane.showMessageDialog(null, "Já existe um usuário para a matrícula informada.");
-					return;
 				}
 
 				perm = (Permissoes) boxNivel.getSelectedItem(); // INSTANCIANDO OBJETO DE PERMISSOES DO USUARIO
 
-				usu.setLogin(loginText.getText());
+				usu.setLogin(Integer.parseInt(loginText.getText()));
 				usu.setSenha(senhaText.getText());
 				usu.setNivel(perm);
 
@@ -175,7 +166,7 @@ public class CadUsuario extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				usu.setLogin(loginText.getText());
+				usu.setLogin(Integer.parseInt(loginText.getText()));
 				usu.setSenha(senhaText.getText());
 
 				if (modSituacaoBox.getSelectedIndex() == 0) {
@@ -213,7 +204,7 @@ public class CadUsuario extends JDialog {
 				usu.setNome(FuncionarioDAO.buscarNome(Integer.parseInt(modMatriculaText.getText())));
 
 				modNomeText.setText(usu.getNome());
-				modLoginText.setText(usu.getLogin());
+				modLoginText.setText(String.valueOf(usu.getLogin()));
 				modSenhaText.setText(usu.getSenha());
 				modSenhaText.setEditable(true);
 

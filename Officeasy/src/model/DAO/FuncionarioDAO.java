@@ -60,49 +60,6 @@ public class FuncionarioDAO extends MySQL {
 
 	}
 
-	public static boolean verificarUsuario(int matricula) {
-
-		try {
-
-			String sql = "select FKUsuario from funcionario where matricula = ?";
-
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
-
-			Connection con = conex.obterConexao();
-
-			PreparedStatement comando = con.prepareStatement(sql);
-
-			comando.setInt(1, matricula);
-			ResultSet rs = comando.executeQuery();
-
-			if (rs.next()) {
-
-				usu.setLogin(rs.getString("FKUsuario"));
-
-			} else if (usu.getLogin() != null) {
-
-				rs.close();
-				comando.close();
-				con.close();
-
-				return true;
-
-			}
-
-			rs.close();
-			comando.close();
-			con.close();
-
-		} catch (SQLException e) {
-
-			JOptionPane.showMessageDialog(null, e.getMessage());
-
-		}
-
-		return false;
-
-	}
-
 	public static String buscarFKUsuario(int matricula) {
 
 		String fk = null;
@@ -247,34 +204,6 @@ public class FuncionarioDAO extends MySQL {
 		}
 
 		return listCargo;
-	}
-
-	public static void inserirFKUsuario(int Matricula, String login) {
-
-		try {
-
-			String sql = "update funcionario set FKUsuario = ? where matricula = ?";
-
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
-
-			Connection con = conex.obterConexao();
-
-			PreparedStatement comando = con.prepareStatement(sql);
-
-			comando.setString(1, login);
-			comando.setInt(2, Matricula);
-
-			comando.executeUpdate();
-
-			comando.close();
-			con.close();
-
-		} catch (Exception e) {
-
-			JOptionPane.showMessageDialog(null, e.getMessage());
-			System.out.println(e.getMessage());
-		}
-
 	}
 
 	public static void novoFuncionario(int Matricula, Boolean situacao, String nome, String cargo, int fkContrato,

@@ -34,7 +34,7 @@ import model.DAO.FuncionarioDAO;
 import util.Box;
 import util.FerramentaString;
 import util.Mascaras;
-import util.NumerosDecimais;
+import util.ValorMonetario;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -51,7 +51,9 @@ import javax.swing.ScrollPaneConstants;
 public class CadastrarFuncionario extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-
+	/**
+	 * @author Gabriel Fonseca
+	 */
 	private static Funcionario funcionarioC;
 	private static Beneficio beneficio;
 	private static Contrato contrato;
@@ -119,6 +121,7 @@ public class CadastrarFuncionario extends JFrame {
 		JPanel painel18 = new JPanel();
 
 		JPanel painel8 = new JPanel();
+
 		FlowLayout fl_painel8 = (FlowLayout) painel8.getLayout();
 		fl_painel8.setAlignment(FlowLayout.LEFT);
 
@@ -138,7 +141,7 @@ public class CadastrarFuncionario extends JFrame {
 
 		JFormattedTextField textCep = new JFormattedTextField(new Mascaras().MaskCEP());
 		textCep.setColumns(9);
-		textCep.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
+		textCep.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST); // Mantem o valor no apos perder o foco 
 
 		JLabel lblNomeDoPai = new JLabel("Nome do Pai");
 		painel8.add(lblNomeDoPai);
@@ -158,7 +161,7 @@ public class CadastrarFuncionario extends JFrame {
 
 		JFormattedTextField textRG = new JFormattedTextField(new Mascaras().MaskRG());
 		textRG.setColumns(12);
-		textRG.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
+		textRG.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST); // Mantem o valor apos perder o foco
 
 		JLabel lblEmissor = new JLabel("Emissor");
 
@@ -181,13 +184,13 @@ public class CadastrarFuncionario extends JFrame {
 
 		JFormattedTextField textTelefone = new JFormattedTextField(new Mascaras().MaskTelefone());
 		textTelefone.setColumns(11);
-		textTelefone.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
+		textTelefone.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST); // Mantem o valor apos perder o foco
 
 		JLabel lblCelular = new JLabel("Celular");
 
 		JFormattedTextField textCelular = new JFormattedTextField(new Mascaras().MaskCelular());
 		textCelular.setColumns(11);
-		textCelular.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
+		textCelular.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST); // Mantem o valor apos perder o foco
 
 		JPanel painel3 = new JPanel();
 
@@ -299,19 +302,19 @@ public class CadastrarFuncionario extends JFrame {
 
 		JFormattedTextField textCPF = new JFormattedTextField(new Mascaras().MaskCPF());
 		textCPF.setColumns(14);
-		textCPF.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
+		textCPF.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST); // Mantem o valor apos perder o foco
 
 		JLabel label_9 = new JLabel("CTPS");
 
 		JFormattedTextField textCTPS = new JFormattedTextField(new Mascaras().MaskCtps());
 		textCTPS.setColumns(10);
-		textCTPS.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
+		textCTPS.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST); // Mantem o valor apos perder o foco
 
 		JLabel label_10 = new JLabel("PIS");
 
 		JFormattedTextField textPIS = new JFormattedTextField(new Mascaras().MaskPis());
 		textPIS.setColumns(12);
-		textPIS.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
+		textPIS.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST); // Mantem o valor apos perder o foco
 
 		JPanel painel1 = new JPanel();
 		FlowLayout fl_painel1 = (FlowLayout) painel1.getLayout();
@@ -340,17 +343,17 @@ public class CadastrarFuncionario extends JFrame {
 		JFormattedTextField textJornada = new JFormattedTextField(new Mascaras().MaskJornada());
 		textJornada.setHorizontalAlignment(SwingConstants.RIGHT);
 		textJornada.setColumns(6);
-		textJornada.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
+		textJornada.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST); // Mantem o valor apos perder o foco
 
 		JLabel lblAso = new JLabel("ASO");
 		painel17.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
 		painel17.add(lblSalario);
 
-		JFormattedTextField textSalario = new JFormattedTextField(new Mascaras().MaskMonetario());
-		textSalario.setColumns(10);
-		textSalario.setHorizontalAlignment(JTextField.RIGHT);
-		textSalario.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
-		textSalario.setDocument(new NumerosDecimais(9));
+		JFormattedTextField textSalario = new JFormattedTextField(new ValorMonetario());
+		//textSalario.setColumns(10);
+		//textSalario.setHorizontalAlignment(JTextField.RIGHT);
+		//textSalario.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
+		//textSalario.setDocument(new NumerosDecimais(9));
 
 		JDateChooser dateASO = new JDateChooser(new Date(), "dd/MM/yy");
 
@@ -365,8 +368,7 @@ public class CadastrarFuncionario extends JFrame {
 		boxUF = new JComboBox<String>();
 		boxUF = Box.boxUF();
 
-		// LAYOUT
-
+		// Layout
 		painel7.add(label_8);
 		painel7.add(textCPF);
 		painel7.add(label_9);
@@ -379,7 +381,6 @@ public class CadastrarFuncionario extends JFrame {
 		painel1.add(textCargo);
 		painel5.add(labelNascimento);
 		painel5.add(dateNascimento);
-
 		painel12.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
 		painel12.add(lblTelefone);
 		painel12.add(textTelefone);
@@ -530,11 +531,9 @@ public class CadastrarFuncionario extends JFrame {
 		frame.setLayout(null);
 		frame.add(scrollPane);
 		getContentPane().setLayout(groupLayout);
+		// Layout end
 
-		// FIM LAYOUT
-
-		// BOTOES E ACOES
-
+		// Funções
 		btnSalvar.addActionListener(new ActionListener() {
 
 			@Override
@@ -702,6 +701,8 @@ public class CadastrarFuncionario extends JFrame {
 		});
 
 	}
+	
+	// Objetos das janelas parentes
 
 	public static void setDep(List<Dependente> list) {
 

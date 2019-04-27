@@ -2,18 +2,18 @@ package model;
 
 public abstract class Usuario {
 
-	private String login;
+	private int login;
 	private String senha;
 	private Permissoes nivel;
 	private boolean status;
 	private boolean manterLogado;
 	private boolean logado;
 
-	public String getLogin() {
+	public int getLogin() {
 		return login;
 	}
 
-	public void setLogin(String login) {
+	public void setLogin(int login) {
 		this.login = login;
 	}
 
@@ -57,7 +57,7 @@ public abstract class Usuario {
 		this.logado = logado;
 	}
 
-	public Usuario(String login, String senha, Permissoes nivel, boolean status, boolean manterLogado, boolean logado) {
+	public Usuario(int login, String senha, Permissoes nivel, boolean status, boolean manterLogado, boolean logado) {
 		super();
 		this.login = login;
 		this.senha = senha;
@@ -65,6 +65,12 @@ public abstract class Usuario {
 		this.status = status;
 		this.manterLogado = manterLogado;
 		this.logado = logado;
+	}
+
+	public Usuario(int login, String senha) {
+
+		this.login = login;
+		this.senha = senha;
 	}
 
 	public Usuario() {

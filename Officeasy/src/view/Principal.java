@@ -14,6 +14,9 @@ import javax.swing.JLabel;
 import java.awt.Insets;
 import java.awt.Toolkit;
 import javax.swing.border.EmptyBorder;
+
+import controller.Officeasy;
+
 import javax.swing.SwingConstants;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -28,6 +31,10 @@ import java.awt.Dimension;
 
 public class Principal extends JFrame {
 
+	/**
+	 * @author Gabriel Fonseca
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 	Funcionario usu = null;
 	private JMenuBar menuBar;
@@ -35,7 +42,6 @@ public class Principal extends JFrame {
 	public Principal(Funcionario usu) {
 
 		super("officEasy - Gestão Inteligente");
-		definirIcone();
 
 		JPanel frame = new JPanel();
 
@@ -220,8 +226,7 @@ public class Principal extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// OfficeEasy.saidaSistema(usu.getLogin());
-				System.exit(0);
+				Officeasy.saidaSistema(usu.getLogin());
 
 			}
 		});
@@ -307,6 +312,7 @@ public class Principal extends JFrame {
 		setVisible(true);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagens/icon.png")));
 
 		// DEFINIR TAMANHO MAXIMO DA TELA | FULL SCREEN
 		// Dimension tela = Toolkit.getDefaultToolkit().getScreenSize();
@@ -316,8 +322,4 @@ public class Principal extends JFrame {
 
 	}
 
-	public void definirIcone() {
-
-		setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagens/icon.png")));
-	}
 }
