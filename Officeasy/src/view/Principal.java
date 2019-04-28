@@ -10,13 +10,12 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import model.Funcionario;
+import model.DAO.FuncionarioDAO;
 import javax.swing.JLabel;
 import java.awt.Insets;
 import java.awt.Toolkit;
 import javax.swing.border.EmptyBorder;
-
 import controller.Officeasy;
-
 import javax.swing.SwingConstants;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -36,52 +35,53 @@ public class Principal extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	Funcionario usu = null;
+	private Funcionario usuario = null;
 	private JMenuBar menuBar;
 
 	public Principal(Funcionario usu) {
 
 		super("officEasy - Gestão Inteligente");
+		this.usuario = usu;
 
 		JPanel frame = new JPanel();
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
-		// PAINEL LATERAL
+		// Painel lateral retratil
 
 		JPanel panelMenu = new JPanel();
 		panelMenu.setBorder(new EmptyBorder(5, 0, 0, 0));
 
-		JLabel menuNome = new JLabel("Gabriel");
+		JLabel menuNome = new JLabel(FuncionarioDAO.buscarNome(usu.getLogin()));
+		menuNome.setHorizontalAlignment(SwingConstants.LEFT);
 
-		JLabel menuMatricula = new JLabel("20180001");
+		JLabel menuMatricula = new JLabel(String.valueOf(String.valueOf(usu.getLogin())));
+		menuMatricula.setHorizontalAlignment(SwingConstants.LEFT);
 
-		JLabel menuNivel = new JLabel("Administrador");
+		JLabel menuNivel = new JLabel(usu.getNivel().toString());
 
 		JButton buttonSenha = new JButton("Senha");
 		buttonSenha.setToolTipText("Alterar Senha");
 		buttonSenha.setFont(new Font("Tahoma", Font.BOLD, 11));
+
+		// Alterar senha
 		buttonSenha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				new AlterarSenha(usuario);
 			}
 		});
 
-		// EXIBINDO E OCULTANDO PAINEL LATERAL
-		panelMenu.setVisible(false);
+		panelMenu.setVisible(false); // Definindo painel oculto por padrão
+
 		GroupLayout gl_panelMenu = new GroupLayout(panelMenu);
 		gl_panelMenu.setHorizontalGroup(gl_panelMenu.createParallelGroup(Alignment.LEADING).addGroup(gl_panelMenu
-				.createSequentialGroup()
+				.createSequentialGroup().addContainerGap()
 				.addGroup(gl_panelMenu.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panelMenu.createSequentialGroup().addGap(13).addGroup(gl_panelMenu
-								.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panelMenu.createParallelGroup(Alignment.TRAILING, false)
-										.addComponent(buttonSenha, Alignment.LEADING, GroupLayout.DEFAULT_SIZE,
-												GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(menuNivel, Alignment.LEADING))
-								.addGroup(gl_panelMenu.createSequentialGroup().addGap(9).addComponent(menuMatricula))))
-						.addGroup(gl_panelMenu.createSequentialGroup().addGap(30).addComponent(menuNome)))
-				.addContainerGap(14, Short.MAX_VALUE)));
+						.addComponent(buttonSenha, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(menuNivel).addComponent(menuMatricula)
+						.addComponent(menuNome, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+				.addContainerGap()));
 		gl_panelMenu.setVerticalGroup(gl_panelMenu.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelMenu.createSequentialGroup().addContainerGap()
 						.addComponent(menuNome, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE).addGap(4)
@@ -89,7 +89,7 @@ public class Principal extends JFrame {
 						.addPreferredGap(ComponentPlacement.RELATED)
 						.addComponent(menuNivel, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
 						.addPreferredGap(ComponentPlacement.RELATED).addComponent(buttonSenha)
-						.addContainerGap(212, Short.MAX_VALUE)));
+						.addContainerGap(233, Short.MAX_VALUE)));
 		panelMenu.setLayout(gl_panelMenu);
 
 		JMenu adm = new JMenu("Administrador");
@@ -226,7 +226,7 @@ public class Principal extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Officeasy.saidaSistema(usu.getLogin());
+				Officeasy.saida(usu.getLogin());
 
 			}
 		});
@@ -297,14 +297,14 @@ public class Principal extends JFrame {
 		GroupLayout gl_frame = new GroupLayout(frame);
 		gl_frame.setHorizontalGroup(gl_frame.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_frame.createSequentialGroup().addGap(4)
-						.addComponent(panelMenu, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE)
+						.addComponent(panelMenu, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE)
 						.addPreferredGap(ComponentPlacement.RELATED)
 						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)));
-		gl_frame.setVerticalGroup(gl_frame.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_frame.createSequentialGroup().addGap(5).addComponent(panelMenu, GroupLayout.DEFAULT_SIZE,
-						GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING, gl_frame.createSequentialGroup().addContainerGap()
-						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 328, GroupLayout.PREFERRED_SIZE)));
+		gl_frame.setVerticalGroup(gl_frame.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_frame.createSequentialGroup().addContainerGap().addComponent(scrollPane,
+						GroupLayout.PREFERRED_SIZE, 328, GroupLayout.PREFERRED_SIZE))
+				.addGroup(Alignment.LEADING, gl_frame.createSequentialGroup().addGap(5).addComponent(panelMenu,
+						GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
 		frame.setLayout(gl_frame);
 
 		setSize(781, 361);

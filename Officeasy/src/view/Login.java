@@ -101,7 +101,6 @@ public class Login extends JFrame {
 				try {
 
 					String pw = new String(sen.getPassword()).trim();
-
 					if (Officeasy.efetuarLogin(Integer.parseInt(usu.getText().trim()), pw)) { // Verifica se é possivel
 																								// fazer login
 

@@ -27,6 +27,11 @@ import util.TableUsuario;
 
 public class CadUsuario extends JDialog {
 
+	/**
+	 * @author Gabriel Fonseca
+	 * 
+	 */
+
 	private static final long serialVersionUID = 1L;
 	static Funcionario usu = null;
 	static Permissoes perm = null;

@@ -10,6 +10,11 @@ import view.SplashScreen;
 
 public class Officeasy {
 
+	/**
+	 * @author Gabriel Fonseca
+	 * 
+	 */
+
 	public static void main(String[] args) {
 
 		try {
@@ -26,38 +31,32 @@ public class Officeasy {
 	public static boolean efetuarLogin(int login, String senha) {
 
 		Funcionario usuario = null;
+
 		try {
 
 			usuario = UsuarioDAO.selecionarUsuario(login);
 
 			if (usuario.isLogado()) {
-				JOptionPane.showMessageDialog(null, "O usuário já encontra-se logado no sistema!.");
+				JOptionPane.showMessageDialog(null, "O usuário já está logado");
 				return false;
-			}
-
-			if (usuario.getSenha().equals(senha.toString())) {
-				UsuarioDAO.alterarStatus(usuario.getLogin(), true);
+			} else if (usuario.getSenha().equals(senha.toString()) && login == usuario.getLogin()) {
 				usuario.setLogado(true);
+				UsuarioDAO.alterarStatus(usuario.getLogin(), usuario.isLogado());
 				new Principal(usuario);
-
 				return true;
 
 			} else {
-
 				JOptionPane.showMessageDialog(null, "Usuário ou Senha inválidos");
-
 				return false;
 			}
-
-		} catch (NullPointerException e) {
-			JOptionPane.showMessageDialog(null, "Usuário não encontrado", "Login", 0);
-
+		} catch (NullPointerException n) {
+			JOptionPane.showMessageDialog(null, "Usuário Inválido");
 			return false;
 		}
 
 	}
 
-	public static void saidaSistema(int login) {
+	public static void saida(int login) {
 
 		UsuarioDAO.alterarStatus(login, false);
 		System.exit(0);

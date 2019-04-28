@@ -64,11 +64,11 @@ public class UsuarioDAO extends MySQL {
 
 	}
 
-	public static void alterarSenha(String nomeUsu, String senha) {
+	public static void alterarSenha(int login, String senha) {
 
 		try {
 
-			String sql = "UPDATE usuario SET senha = ? WHERE nomeUsu = ?";
+			String sql = "update usuario set senha = ? where login = ?";
 
 			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
@@ -77,7 +77,7 @@ public class UsuarioDAO extends MySQL {
 			PreparedStatement comando = con.prepareStatement(sql);
 
 			comando.setString(1, senha);
-			comando.setString(2, nomeUsu);
+			comando.setInt(2, login);
 
 			comando.executeUpdate();
 
@@ -87,6 +87,8 @@ public class UsuarioDAO extends MySQL {
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
+
+		JOptionPane.showMessageDialog(null, "Senha alterada!");
 
 	}
 

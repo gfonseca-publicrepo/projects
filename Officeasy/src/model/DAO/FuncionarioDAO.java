@@ -15,6 +15,11 @@ import util.MySQL;
 
 public class FuncionarioDAO extends MySQL {
 
+	/**
+	 * @author Gabriel Fonseca
+	 * 
+	 */
+
 	private static int result;
 	private static Funcionario f;
 
@@ -112,7 +117,10 @@ public class FuncionarioDAO extends MySQL {
 
 			ResultSet rs = comando.executeQuery();
 
-			nome = rs.getString("nome");
+			if (rs.next()) {
+
+				nome = rs.getString("nome");
+			}
 
 			rs.close();
 			comando.close();

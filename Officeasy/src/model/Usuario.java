@@ -2,6 +2,11 @@ package model;
 
 public abstract class Usuario {
 
+	/**
+	 * @author Gabriel Fonseca
+	 * 
+	 */
+
 	private int login;
 	private String senha;
 	private Permissoes nivel;
