@@ -69,7 +69,7 @@ public class CadastrarFuncionario extends JFrame {
 	private static List<Dependente> dependentes;
 	private static int maxMatricula;
 
-	public CadastrarFuncionario() {
+	public CadastrarFuncionario(Funcionario usu) {
 
 		setVisible(true);
 		setSize(674, 539);
@@ -141,7 +141,7 @@ public class CadastrarFuncionario extends JFrame {
 
 		JFormattedTextField textCep = new JFormattedTextField(new Mascaras().MaskCEP());
 		textCep.setColumns(9);
-		textCep.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST); // Mantem o valor no apos perder o foco 
+		textCep.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST); // Mantem o valor no apos perder o foco
 
 		JLabel lblNomeDoPai = new JLabel("Nome do Pai");
 		painel8.add(lblNomeDoPai);
@@ -350,10 +350,10 @@ public class CadastrarFuncionario extends JFrame {
 		painel17.add(lblSalario);
 
 		JFormattedTextField textSalario = new JFormattedTextField(new ValorMonetario());
-		//textSalario.setColumns(10);
-		//textSalario.setHorizontalAlignment(JTextField.RIGHT);
-		//textSalario.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
-		//textSalario.setDocument(new NumerosDecimais(9));
+		// textSalario.setColumns(10);
+		// textSalario.setHorizontalAlignment(JTextField.RIGHT);
+		// textSalario.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
+		// textSalario.setDocument(new NumerosDecimais(9));
 
 		JDateChooser dateASO = new JDateChooser(new Date(), "dd/MM/yy");
 
@@ -668,7 +668,7 @@ public class CadastrarFuncionario extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
-				new FuncionarioView();
+				new FuncionarioView(usu);
 
 			}
 		});
@@ -701,7 +701,7 @@ public class CadastrarFuncionario extends JFrame {
 		});
 
 	}
-	
+
 	// Objetos das janelas parentes
 
 	public static void setDep(List<Dependente> list) {

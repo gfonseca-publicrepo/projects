@@ -64,7 +64,7 @@ public class ModificarFuncionario extends JFrame {
 	private static List<Certificado> certificados;
 	private static List<Dependente> dependentes;
 
-	public ModificarFuncionario(Funcionario f) {
+	public ModificarFuncionario(Funcionario usu, Funcionario f) {
 
 		setVisible(true);
 		setSize(674, 539);
@@ -711,7 +711,7 @@ public class ModificarFuncionario extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
-				new FuncionarioView();
+				new FuncionarioView(usu);
 
 			}
 		});

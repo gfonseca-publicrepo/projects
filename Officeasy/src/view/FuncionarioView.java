@@ -35,7 +35,7 @@ public class FuncionarioView extends JFrame {
 	private JTextField campoBusca;
 	private JTable table;
 
-	public FuncionarioView() {
+	public FuncionarioView(Funcionario usu) {
 
 		// FRAME
 		setResizable(false);
@@ -208,7 +208,7 @@ public class FuncionarioView extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				new Principal(null);
+				new Principal(usu);
 				dispose();
 
 			}
@@ -218,7 +218,7 @@ public class FuncionarioView extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new CadastrarFuncionario();
+				new CadastrarFuncionario(usu);
 				dispose();
 
 			}
@@ -240,7 +240,7 @@ public class FuncionarioView extends JFrame {
 
 				Funcionario f = FuncionarioDAO
 						.selecionarPorMatricula((Integer) tableModel.getValueAt(table.getSelectedRow(), 1));
-				new ModificarFuncionario(f);
+				new ModificarFuncionario(usu, f);
 				dispose();
 			}
 		});

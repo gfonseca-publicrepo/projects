@@ -242,7 +242,7 @@ public class Principal extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new FuncionarioView();
+				new FuncionarioView(usu);
 				dispose();
 
 			}

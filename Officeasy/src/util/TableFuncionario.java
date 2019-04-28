@@ -55,9 +55,17 @@ public class TableFuncionario extends AbstractTableModel {
 				return "Desligado";
 			}
 		case 5:
-			return f.getF().getContrato().getNome();
+			try {
+				return f.getF().getContrato().getNome();
+			} catch (NullPointerException e) {
+				return null;
+			}
 		case 6:
-			return f.getF().getLocal().getNome();
+			try {
+				return f.getF().getLocal().getNome();
+			} catch (NullPointerException e) {
+				return null;
+			}
 
 		default:
 			break;
