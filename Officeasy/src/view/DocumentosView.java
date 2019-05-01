@@ -13,47 +13,49 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
 import java.awt.FlowLayout;
+import model.Documento;
 import model.Funcionario;
-import model.Modelo;
 import model.TipoDoc;
-import model.DAO.ModeloDAO;
+import model.DAO.DocumentoDAO;
 import model.DAO.TipoDocDAO;
 import util.Leitor;
-import util.table.TableModelo;
+import util.table.TableDocumento;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
-public class ModelosView extends JFrame {
+public class DocumentosView extends JFrame {
 	Funcionario usu = null;
 	private JTextField campoBusca;
 	private JTextField campoData1;
 	private JTextField campoData2;
 	private JTable table;
-	private TableModelo tableModel;
-	private List<Modelo> modelos;
+	private TableDocumento tableDocumento;
+	private List<Documento> documentos;
 	private List<TipoDoc> tipos;
 
-	public ModelosView(Funcionario usu) {
+	public DocumentosView(Funcionario usu) {
 		this.usu = usu;
-		modelos = new ArrayList<Modelo>();
-		this.modelos = ModeloDAO.listarAtivos();
+		documentos = new ArrayList<Documento>();
+		this.documentos = DocumentoDAO.listarAtivos();
 		this.tipos = TipoDocDAO.listarTipoDoc();
 
 		// Componentes da tabela
 		table = new JTable();
-		List<Modelo> tableListModelo = new ArrayList<Modelo>();
+		List<Documento> tableListDocumento = new ArrayList<Documento>();
 		List<TipoDoc> tableListTipo = new ArrayList<TipoDoc>();
 		tableListTipo.addAll(tipos);
-		tableListModelo.addAll(modelos);
-		tableModel = new TableModelo(tableListModelo, tableListTipo);
-		table.setModel(tableModel);
+		tableListDocumento.addAll(documentos);
+		tableDocumento = new TableDocumento(tableListDocumento, tableListTipo);
+		table.setModel(tableDocumento);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		table.getColumnModel().getColumn(0).setPreferredWidth(350);
+		table.getColumnModel().getColumn(0).setPreferredWidth(300);
 		table.getColumnModel().getColumn(1).setPreferredWidth(130);
-		table.getColumnModel().getColumn(2).setPreferredWidth(465);
+		table.getColumnModel().getColumn(2).setPreferredWidth(130);
+		table.getColumnModel().getColumn(3).setPreferredWidth(85);
+		table.getColumnModel().getColumn(4).setPreferredWidth(300);
 
 		GridBagLayout gbl_panelPrincipal = new GridBagLayout();
 		gbl_panelPrincipal.columnWidths = new int[] { 60, 419, 0, 0, 400, 0 };
@@ -102,14 +104,14 @@ public class ModelosView extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				int i;
 				i = table.getSelectedRow();
-				Modelo m = modelos.get(i);
+				Documento m = documentos.get(i);
 				if (JOptionPane.showConfirmDialog(null,
 						"Deseja excluir o arquivo " + m.getTitulo() + "?") == JOptionPane.YES_OPTION) {
 
 					int id = m.getId();
-					ModeloDAO.deleteModelo(id);
+					DocumentoDAO.deleteDocumento(id);
 					dispose();
-					new ModelosView(null);
+					new DocumentosView(null);
 				}
 
 			}
@@ -130,7 +132,7 @@ public class ModelosView extends JFrame {
 				try {
 					int i;
 					i = table.getSelectedRow();
-					Modelo m = modelos.get(i);
+					Documento m = documentos.get(i);
 					String caminho = m.getCaminho();
 					new Leitor(caminho);
 				} catch (ArrayIndexOutOfBoundsException e) {
@@ -144,10 +146,10 @@ public class ModelosView extends JFrame {
 		panelFuncao.add(btnExibir);
 		panelFuncao.add(button);
 
-		JButton btnAdicionarDocumento = new JButton("Adicionar Modelo");
+		JButton btnAdicionarDocumento = new JButton("Adicionar Documento");
 		btnAdicionarDocumento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new AdicionarModeloView();
+				new AdicionarDocumentoView();
 				dispose();
 			}
 		});

@@ -17,7 +17,7 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 
 @SuppressWarnings("serial")
-public class AdicionarArquivoView extends JDialog {
+public class AdicionarModeloView extends JDialog {
 
 	private JTextField textField;
 	private JTextField textField_1;
@@ -28,7 +28,7 @@ public class AdicionarArquivoView extends JDialog {
 	List<TipoDoc> lista = TipoDocDAO.listarTipoDoc();
 
 	@SuppressWarnings("rawtypes")
-	public AdicionarArquivoView() {
+	public AdicionarModeloView() {
 		getContentPane().setLayout(null);
 
 		JButton btnNewButton = new JButton("Abrir");
@@ -127,7 +127,7 @@ public class AdicionarArquivoView extends JDialog {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
-				new NovoTipoDocView();
+				new NovoTipoDocModelo();
 			}
 		});
 		btnNewButton_1.setBounds(183, 148, 35, 22);
@@ -143,7 +143,6 @@ public class AdicionarArquivoView extends JDialog {
 		btnNewButton_2.setBounds(66, 192, 89, 23);
 		getContentPane().add(btnNewButton_2);
 		setModal(true);
-		setTitle("Adicionar Modelo");
 		setSize(325, 255);
 		setResizable(false);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);

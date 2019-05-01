@@ -197,6 +197,15 @@ public class Principal extends JFrame {
 		buttonMenu.setMargin(new Insets(0, 0, 0, 0));
 
 		JButton documentos = new JButton("Documentos");
+		documentos.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new DocumentosView(null);
+
+			}
+		});
 
 		JButton equipamentos = new JButton("Equipamentos");
 

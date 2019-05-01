@@ -14,10 +14,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 @SuppressWarnings("serial")
-public class NovoTipoDocView extends JDialog {
+public class NovoTipoDocDocumento extends JDialog {
 	private JTextField textField_1;
 
-	public NovoTipoDocView() {
+	public NovoTipoDocDocumento() {
 		getContentPane().setLayout(null);
 
 		JSeparator separator = new JSeparator();
@@ -51,7 +51,7 @@ public class NovoTipoDocView extends JDialog {
 						TipoDocDAO.inserirTipoDoc(textField_1.getText());
 						JOptionPane.showMessageDialog(null, "Adicionado com sucesso");
 						dispose();
-						new AdicionarArquivoView();
+						new AdicionarModeloView();
 					}
 
 				}
@@ -66,7 +66,7 @@ public class NovoTipoDocView extends JDialog {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
-				new AdicionarArquivoView();
+				new AdicionarDocumentoView();
 			}
 		});
 		btnNewButton.setBounds(10, 75, 89, 23);
