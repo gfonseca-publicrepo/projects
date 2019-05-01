@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import model.Permissoes;
-import util.Conexao;
+import util.ConexaoBD;
 import util.MySQL;
 
 public class PermissoesDAO extends MySQL {
@@ -22,7 +22,7 @@ public class PermissoesDAO extends MySQL {
 
 			String sql = "select * from permissoes";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 
@@ -58,7 +58,7 @@ public class PermissoesDAO extends MySQL {
 
 			String sql = "UPDATE permissoes SET nome = ?, chat = ?, logs = ?, alterarPasta = ?, cadUsu = ?, cadFun = ?, cadPerm = ?, cadModelo = ?, cadLocal = ?, cadEmpresa = ?, cadDocumento = ?, cadEquipamento = ? where id = ?";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 
@@ -98,7 +98,7 @@ public class PermissoesDAO extends MySQL {
 
 			String sql = "select * from permissoes where id = ?";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 
@@ -134,7 +134,7 @@ public class PermissoesDAO extends MySQL {
 
 			String sql = "delete from permissoes where id = ?";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 
@@ -165,7 +165,7 @@ public class PermissoesDAO extends MySQL {
 
 			String sql = "insert into permissoes values (null,'?','?','?','?','?','?','?','?','?','?','?','?'";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 

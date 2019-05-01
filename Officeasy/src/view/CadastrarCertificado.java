@@ -15,7 +15,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
 import model.Certificado;
-import util.TableCertificado;
+import util.table.TableCertificado;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;

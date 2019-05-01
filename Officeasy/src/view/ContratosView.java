@@ -11,7 +11,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableCellRenderer;
 import com.toedter.calendar.JDateChooser;
 import model.DAO.ContratoDAO;
-import util.TableContratos;
+import util.table.TableContratos;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;

@@ -17,7 +17,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableCellRenderer;
 import model.Contato.CategoriaCT;
 import model.DAO.ContatoDAO;
-import util.TableContatos;
+import util.table.TableContatos;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JComboBox;

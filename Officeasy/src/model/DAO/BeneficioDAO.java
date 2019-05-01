@@ -11,7 +11,7 @@ import model.Beneficio.Alimentacao;
 import model.Beneficio.SeguroOdontologico;
 import model.Beneficio.SeguroSaude;
 import model.Beneficio.Transporte;
-import util.Conexao;
+import util.ConexaoBD;
 import util.MySQL;
 
 public class BeneficioDAO {
@@ -26,7 +26,7 @@ public class BeneficioDAO {
 
 				String sql = "select * from tipotransporte";
 
-				Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+				ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 				Connection con = conex.obterConexao();
 
@@ -60,7 +60,7 @@ public class BeneficioDAO {
 
 				String sql = "select * from tipotransporte where id = ?";
 
-				Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+				ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 				Connection con = conex.obterConexao();
 
@@ -98,7 +98,7 @@ public class BeneficioDAO {
 
 				String sql = "select * from tiporefeicao";
 
-				Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+				ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 				Connection con = conex.obterConexao();
 
@@ -132,7 +132,7 @@ public class BeneficioDAO {
 
 				String sql = "select * from tiporefeicao where id = ?";
 
-				Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+				ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 				Connection con = conex.obterConexao();
 
@@ -170,7 +170,7 @@ public class BeneficioDAO {
 
 				String sql = "select * from planosaude";
 
-				Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+				ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 				Connection con = conex.obterConexao();
 
@@ -204,7 +204,7 @@ public class BeneficioDAO {
 
 				String sql = "select * from planosaude where id = ?";
 
-				Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+				ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 				Connection con = conex.obterConexao();
 
@@ -241,7 +241,7 @@ public class BeneficioDAO {
 
 				String sql = "select * from planoodonto";
 
-				Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+				ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 				Connection con = conex.obterConexao();
 
@@ -276,7 +276,7 @@ public class BeneficioDAO {
 
 				String sql = "select * from planoodonto where id = ?";
 
-				Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+				ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 				Connection con = conex.obterConexao();
 
@@ -308,7 +308,7 @@ public class BeneficioDAO {
 
 			String sql = "insert into beneficios (vtValor, FKTipoRefeicao, FKTipoTransporte, FKPlanoOdonto, FKPlanoSaude, FKFuncionario) values (?,?,?,?,?,?)";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 
@@ -342,7 +342,7 @@ public class BeneficioDAO {
 
 			String sql = "select * from beneficios where FKFuncionario = ?";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 

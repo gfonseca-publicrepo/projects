@@ -23,7 +23,7 @@ import model.Funcionario;
 import model.Permissoes;
 import model.DAO.FuncionarioDAO;
 import model.DAO.UsuarioDAO;
-import util.TableUsuario;
+import util.table.TableUsuario;
 
 public class CadUsuario extends JDialog {
 

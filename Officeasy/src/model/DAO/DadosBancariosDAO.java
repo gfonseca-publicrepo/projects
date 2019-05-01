@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import model.DadosBancarios;
 import model.DadosBancarios.Banco;
 import model.DadosBancarios.TipoConta;
-import util.Conexao;
+import util.ConexaoBD;
 import util.MySQL;
 
 public class DadosBancariosDAO {
@@ -25,7 +25,7 @@ public class DadosBancariosDAO {
 
 				String sql = "select * from bancos";
 
-				Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+				ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 				Connection con = conex.obterConexao();
 
@@ -60,7 +60,7 @@ public class DadosBancariosDAO {
 
 				String sql = "select * from bancos where id = ?";
 
-				Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+				ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 				Connection con = conex.obterConexao();
 
@@ -100,7 +100,7 @@ public class DadosBancariosDAO {
 
 				String sql = "select * from tipoconta";
 
-				Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+				ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 				Connection con = conex.obterConexao();
 
@@ -135,7 +135,7 @@ public class DadosBancariosDAO {
 
 				String sql = "select * from tipoconta where id = ?";
 
-				Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+				ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 				Connection con = conex.obterConexao();
 
@@ -171,7 +171,7 @@ public class DadosBancariosDAO {
 
 			String sql = "insert into dadosbancofunc (numConta, agencia, FKBanco, FKFuncionario, FKTipoConta) values (?,?,?,?,?)";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 
@@ -205,7 +205,7 @@ public class DadosBancariosDAO {
 
 			String sql = "select * from dadosbancofunc where FKFuncionario = ?";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 

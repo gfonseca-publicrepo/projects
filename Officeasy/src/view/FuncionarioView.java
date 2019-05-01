@@ -27,7 +27,7 @@ import model.Contrato;
 import model.Funcionario;
 import model.Local;
 import model.DAO.FuncionarioDAO;
-import util.TableFuncionario;
+import util.table.TableFuncionario;
 
 public class FuncionarioView extends JFrame {
 

@@ -15,9 +15,9 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
 import model.Dependente;
-import util.Box;
+import util.JCBox;
 import util.Mascaras;
-import util.TableDependente;
+import util.table.TableDependente;
 import javax.swing.JFormattedTextField;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -112,7 +112,7 @@ public class ModificarDependente extends JDialog {
 		JLabel lblParentesco = new JLabel("Grau");
 		panel_2.add(lblParentesco);
 
-		JComboBox<String> boxParentesco = Box.parentesco();
+		JComboBox<String> boxParentesco = JCBox.parentesco();
 		panel_2.add(boxParentesco);
 
 		JLabel lblNascimento = new JLabel("Nascimento");

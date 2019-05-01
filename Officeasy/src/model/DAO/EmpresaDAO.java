@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import model.Empresa;
-import util.Conexao;
+import util.ConexaoBD;
 import util.MySQL;
 
 public class EmpresaDAO extends MySQL {
@@ -19,7 +19,7 @@ public class EmpresaDAO extends MySQL {
 
 			String sql = "select * from empresa where id = ?";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 

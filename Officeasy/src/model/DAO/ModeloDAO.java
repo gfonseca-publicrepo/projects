@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import model.Modelo;
-import util.Conexao;
+import util.ConexaoBD;
 import util.MySQL;
 
 public class ModeloDAO extends MySQL {
@@ -21,7 +21,7 @@ public class ModeloDAO extends MySQL {
 
 			String sql = "select * from modelo";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 
@@ -53,7 +53,7 @@ public class ModeloDAO extends MySQL {
 
 			String sql = "insert into modelo values (?,?,?,?)";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 
@@ -80,7 +80,7 @@ public class ModeloDAO extends MySQL {
 
 			String sql = "delete from modelo where id = ?";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 

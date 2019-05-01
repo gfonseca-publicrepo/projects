@@ -9,7 +9,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import model.Contrato;
 import model.Empresa;
-import util.Conexao;
+import util.ConexaoBD;
 import util.MySQL;
 
 public class ContratoDAO extends MySQL {
@@ -22,7 +22,7 @@ public class ContratoDAO extends MySQL {
 
 			String sql = "select * from contrato where numero = ?";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 
@@ -62,7 +62,7 @@ public class ContratoDAO extends MySQL {
 
 			String sql = "select * from contrato";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 

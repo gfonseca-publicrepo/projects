@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import model.Contrato;
 import model.Funcionario;
 import model.Local;
-import util.Conexao;
+import util.ConexaoBD;
 import util.MySQL;
 
 public class FuncionarioDAO extends MySQL {
@@ -31,7 +31,7 @@ public class FuncionarioDAO extends MySQL {
 
 			String sql = "select matricula from funcionario where matricula = ?";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 
@@ -73,7 +73,7 @@ public class FuncionarioDAO extends MySQL {
 
 			String sql = "select FKUsuario from funcionario where matricula = ?";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 
@@ -107,7 +107,7 @@ public class FuncionarioDAO extends MySQL {
 
 			String sql = "select nome from funcionario where matricula = ?";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 
@@ -147,7 +147,7 @@ public class FuncionarioDAO extends MySQL {
 
 			String sql = "select * from funcionario where situacao = true";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 
@@ -187,7 +187,7 @@ public class FuncionarioDAO extends MySQL {
 
 			String sql = "select distinct cargo from funcionario";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 
@@ -221,7 +221,7 @@ public class FuncionarioDAO extends MySQL {
 
 			String sql = "insert into funcionario (matricula, situacao, nome, cargo, FKContratoNum, FKLocal) values (?,?,?,?,?,?)";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 
@@ -253,7 +253,7 @@ public class FuncionarioDAO extends MySQL {
 
 			String sql = "select max(matricula) as matricula from funcionario";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 
@@ -285,7 +285,7 @@ public class FuncionarioDAO extends MySQL {
 
 			String sql = "select * from funcionario where matricula = ?";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 

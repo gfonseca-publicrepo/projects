@@ -23,7 +23,7 @@ import model.TipoDoc;
 import model.DAO.ModeloDAO;
 import model.DAO.TipoDocDAO;
 import util.Leitor;
-import util.TableModelo;
+import util.table.TableModelo;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;

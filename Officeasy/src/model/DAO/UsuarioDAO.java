@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 
 import model.Funcionario;
 import model.Permissoes;
-import util.Conexao;
+import util.ConexaoBD;
 import util.MySQL;
 
 public class UsuarioDAO extends MySQL {
@@ -28,7 +28,7 @@ public class UsuarioDAO extends MySQL {
 
 			String sql = "select * from usuario where login = ?";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 
@@ -70,7 +70,7 @@ public class UsuarioDAO extends MySQL {
 
 			String sql = "update usuario set senha = ? where login = ?";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 
@@ -98,7 +98,7 @@ public class UsuarioDAO extends MySQL {
 
 			String sql = "update usuario set logado = ? WHERE login = ?";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 
@@ -124,7 +124,7 @@ public class UsuarioDAO extends MySQL {
 
 			String sql = "UPDATE usuario SET manterLogado = ? where nomeUsu = ?";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 
@@ -150,7 +150,7 @@ public class UsuarioDAO extends MySQL {
 
 			String sql = "INSERT INTO usuario values (?,?,?,?,?,?)";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 
@@ -187,7 +187,7 @@ public class UsuarioDAO extends MySQL {
 
 			String sql = "select * from usuario where login = ?";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 
@@ -227,7 +227,7 @@ public class UsuarioDAO extends MySQL {
 
 			String sql = "select * from usuario where usuario.nomeUsu = funcionario.FKUsuario and funcionario.matricula = ?";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 
@@ -270,7 +270,7 @@ public class UsuarioDAO extends MySQL {
 
 			String sql = "select * from usuario where status = true";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 
@@ -312,7 +312,7 @@ public class UsuarioDAO extends MySQL {
 
 			String sql = "select * from usuario where status = false";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 
@@ -354,7 +354,7 @@ public class UsuarioDAO extends MySQL {
 
 			String sql = "select usuario.nomeUsu, usuario.status, usuario.logado, usuario.FKNivel from usuario, funcionario where funcionario.matricula = ? and funcionario.FKUsuario = usuario.nomeUsu";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 
@@ -398,7 +398,7 @@ public class UsuarioDAO extends MySQL {
 
 			String sql = "select usuario.nomeUsu, usuario.status, usuario.logado, usuario.FKNivel from usuario where usuario.nomeUsu = ?";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 
@@ -439,7 +439,7 @@ public class UsuarioDAO extends MySQL {
 
 			String sql = "UPDATE usuario SET senha = ?, status = ?, FKNivel = ? where nomeUsu = ?";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 
@@ -471,7 +471,7 @@ public class UsuarioDAO extends MySQL {
 
 			String sql = "SELECT COUNT(*) from usuario";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 

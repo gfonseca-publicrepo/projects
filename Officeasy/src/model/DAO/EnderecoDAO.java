@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import model.Endereco;
-import util.Conexao;
+import util.ConexaoBD;
 import util.MySQL;
 
 public class EnderecoDAO {
@@ -17,7 +17,7 @@ public class EnderecoDAO {
 
 			String sql = "insert into endfun (logradouro, numero, complemento, bairro, cidade, estado, cep, FKFuncionario) values (?,?,?,?,?,?,?,?)";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 
@@ -53,7 +53,7 @@ public class EnderecoDAO {
 
 			String sql = "select * from endFun where FKFuncionario = ?";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 

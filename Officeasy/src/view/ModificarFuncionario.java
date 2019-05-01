@@ -31,8 +31,8 @@ import model.DAO.DependenteDAO;
 import model.DAO.DocFunDAO;
 import model.DAO.EnderecoDAO;
 import model.DAO.FuncionarioDAO;
-import util.Box;
-import util.FerramentaString;
+import util.JCBox;
+import util.LimpaString;
 import util.Mascaras;
 import java.util.Date;
 import java.util.List;
@@ -101,8 +101,8 @@ public class ModificarFuncionario extends JFrame {
 		textMatricula.setEditable(false);
 		textMatricula.setColumns(10);
 
-		new Box();
-		JComboBox<String> boxSituacao = Box.boxSituacao();
+		new JCBox();
+		JComboBox<String> boxSituacao = JCBox.boxSituacao();
 
 		if (f.getStatus()) {
 			boxSituacao.setSelectedItem("Ativo");
@@ -260,14 +260,14 @@ public class ModificarFuncionario extends JFrame {
 		painel5.add(labelEstadoCivil);
 
 		boxEstadoCivil = new JComboBox<String>();
-		boxEstadoCivil = Box.boxEstadoCivil();
+		boxEstadoCivil = JCBox.boxEstadoCivil();
 		painel5.add(boxEstadoCivil);
 
 		JLabel labelSexo = new JLabel("Sexo");
 		painel5.add(labelSexo);
 
 		boxSexo = new JComboBox<String>();
-		boxSexo = Box.boxSexo();
+		boxSexo = JCBox.boxSexo();
 		painel5.add(boxSexo);
 
 		JLabel label = new JLabel("E-mail");
@@ -353,7 +353,7 @@ public class ModificarFuncionario extends JFrame {
 		JButton btnCancelar = new JButton("Cancelar");
 
 		boxUF = new JComboBox<String>();
-		boxUF = Box.boxUF();
+		boxUF = JCBox.boxUF();
 
 		// LAYOUT
 
@@ -641,7 +641,7 @@ public class ModificarFuncionario extends JFrame {
 							textCargo.getText(), true, contrato, local);
 
 					dados = new DadosFun(dateAdmissao.getDate(),
-							Double.parseDouble(FerramentaString.limpaDinheiro(textSalario.getText())),
+							Double.parseDouble(LimpaString.limpaDinheiro(textSalario.getText())),
 							Integer.parseInt(textJornada.getText().substring(0, textJornada.getText().indexOf("h"))),
 							dateNascimento.getDate(), boxEstadoCivil.getSelectedItem().toString(),
 							boxSexo.getSelectedItem().toString(), textTelefone.getText(), textCelular.getText(),
@@ -651,9 +651,9 @@ public class ModificarFuncionario extends JFrame {
 							textBairro.getText(), textCidade.getText(), boxUF.getSelectedItem().toString(),
 							textCep.getText());
 
-					docFun = new DocFun(FerramentaString.limpaDoc(textRG.getText()), textEmissorRG.getText(),
-							dateEmissaoRG.getDate(), FerramentaString.limpaDoc(textCPF.getText()), textCTPS.getText(),
-							FerramentaString.limpaDoc(textPIS.getText()), textPai.getText(), textMae.getText(),
+					docFun = new DocFun(LimpaString.limpaDoc(textRG.getText()), textEmissorRG.getText(),
+							dateEmissaoRG.getDate(), LimpaString.limpaDoc(textCPF.getText()), textCTPS.getText(),
+							LimpaString.limpaDoc(textPIS.getText()), textPai.getText(), textMae.getText(),
 							dateASO.getDate(), certificados);
 
 					dadosBanco = new DadosBancarios(textConta.getText(), textAgencia.getText(),
