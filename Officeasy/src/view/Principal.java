@@ -176,8 +176,6 @@ public class Principal extends JFrame {
 		JMenuItem mntmEndereos = new JMenuItem("Endereços");
 		tools.add(mntmEndereos);
 
-		// FIM DO PAINEL DE BOTOES
-
 		JPanel panelPrincipal = new JPanel();
 		panelPrincipal.setAlignmentY(Component.TOP_ALIGNMENT);
 		scrollPane.setViewportView(panelPrincipal);
@@ -187,14 +185,27 @@ public class Principal extends JFrame {
 		buttonsPanel.setOpaque(false);
 
 		JButton buttonMenu = new JButton();
-		buttonMenu.setText("Menu");
+		buttonMenu.setText("•");
 		buttonMenu.setHorizontalTextPosition(SwingConstants.CENTER);
 		buttonMenu.setIconTextGap(0);
-		buttonMenu.setPreferredSize(new Dimension(25, 20));
+		buttonMenu.setPreferredSize(new Dimension(35, 30));
 		buttonMenu.setMinimumSize(new Dimension(0, 0));
 		buttonMenu.setMaximumSize(new Dimension(0, 0));
 		buttonMenu.setSize(10, 10);
 		buttonMenu.setMargin(new Insets(0, 0, 0, 0));
+
+		buttonMenu.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (panelMenu.isVisible()) {
+					panelMenu.setVisible(false);
+				} else {
+					panelMenu.setVisible(true);
+				}
+
+			}
+		});
 
 		JButton documentos = new JButton("Documentos");
 		documentos.addActionListener(new ActionListener() {
@@ -202,7 +213,7 @@ public class Principal extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				new DocumentosView(null);
+				new DocumentosView(usu);
 
 			}
 		});
@@ -213,8 +224,8 @@ public class Principal extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new EquipamentosView();
 				dispose();
+				new EquipamentosView(usu);
 
 			}
 		});
@@ -224,7 +235,7 @@ public class Principal extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				dispose();
 				new ModelosView(usu);
 
 			}
@@ -240,10 +251,6 @@ public class Principal extends JFrame {
 			}
 		});
 
-		// FIM DA BARRA DE MENU
-
-		// INICIOS DO PAINEL DE BOTOES
-
 		JButton funcionarios = new JButton("Funcionários");
 		funcionarios.setSize(40, 40);
 
@@ -257,20 +264,18 @@ public class Principal extends JFrame {
 			}
 		});
 
-		// AÇÃO - MENU LATERAL
+		JButton contratos = new JButton("Contratos");
 
-		buttonMenu.addActionListener(new ActionListener() {
+		contratos.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (panelMenu.isVisible()) {
-					panelMenu.setVisible(false);
-				} else {
-					panelMenu.setVisible(true);
-				}
+				new ContratosView(usu);
+				dispose();
 
 			}
 		});
+
 		GroupLayout gl_panelPrincipal = new GroupLayout(panelPrincipal);
 		gl_panelPrincipal.setHorizontalGroup(gl_panelPrincipal.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelPrincipal.createSequentialGroup().addGap(38)
@@ -284,23 +289,11 @@ public class Principal extends JFrame {
 		buttonsPanel.add(buttonMenu);
 		buttonsPanel.add(documentos);
 		buttonsPanel.add(equipamentos);
-
-		JButton contratos = new JButton("Contratos");
 		buttonsPanel.add(contratos);
 		buttonsPanel.add(funcionarios);
 		buttonsPanel.add(modelos);
 		buttonsPanel.add(sair);
 		panelPrincipal.setLayout(gl_panelPrincipal);
-
-		contratos.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				new ContratosView();
-				dispose();
-
-			}
-		});
 
 		getContentPane().add(frame, BorderLayout.SOUTH);
 		GroupLayout gl_frame = new GroupLayout(frame);
@@ -323,11 +316,14 @@ public class Principal extends JFrame {
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagens/icon.png")));
 
-		// DEFINIR TAMANHO MAXIMO DA TELA | FULL SCREEN
-		// Dimension tela = Toolkit.getDefaultToolkit().getScreenSize();
-		// int lar = (int) tela.getWidth();
-		// int alt = (int) tela.getHeight() - 25;
-		// setSize(lar, alt);
+		/*
+		 * 
+		 * DEFINIR TAMANHO MAXIMO DA TELA / FULL SCREEN
+		 * 
+		 * Dimension tela = Toolkit.getDefaultToolkit().getScreenSize(); int lar = (int)
+		 * tela.getWidth(); int alt = (int) tela.getHeight() - 25; setSize(lar, alt);
+		 * 
+		 */
 
 	}
 

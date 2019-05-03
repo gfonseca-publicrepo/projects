@@ -38,6 +38,8 @@ import util.document.DocumentMonetario;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+
 import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
@@ -45,6 +47,9 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.text.NumberFormat;
 import java.awt.FlowLayout;
 import javax.swing.ScrollPaneConstants;
 
@@ -349,11 +354,50 @@ public class CadastrarFuncionario extends JFrame {
 		painel17.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
 		painel17.add(lblSalario);
 
-		JFormattedTextField textSalario = new JFormattedTextField(new DocumentMonetario());
-		// textSalario.setColumns(10);
-		// textSalario.setHorizontalAlignment(JTextField.RIGHT);
-		// textSalario.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
-		// textSalario.setDocument(new NumerosDecimais(9));
+		JFormattedTextField textSalario = new JFormattedTextField();
+		textSalario.setColumns(10);
+		textSalario.setDocument(new DocumentMonetario());
+
+		Locale locale = new Locale("pt", "BR");
+		NumberFormat nf = NumberFormat.getCurrencyInstance(locale);
+
+		textSalario.addFocusListener(new FocusListener() {
+
+			@Override
+			public void focusLost(FocusEvent e) {
+
+				if (!textSalario.getText().equals("")) {
+
+					String a = textSalario.getText();
+					a = a.replace(",", "."); // Substitui virgulas por pontos
+
+					String test = a.substring(a.indexOf(".") + 1); // Verifica se existe ponto na string e passa o
+																	// restante
+					if (test.contains(".")) { // Verica se existe mais de um ponto
+						textSalario.setText("");
+						JOptionPane.showMessageDialog(null, "Ultilize ponto ou virgula apenas para casas decimais");
+						return;
+					}
+
+					textSalario.setText(nf.format(Double.parseDouble(a)));
+				}
+			}
+
+			@Override
+			public void focusGained(FocusEvent e) {
+
+				if (!textSalario.getText().equals("")) {
+
+					String a = textSalario.getText().substring(2, textSalario.getText().indexOf(","));
+
+					a = a.replace(".", "");
+
+					textSalario.setText(a);
+
+				}
+
+			}
+		});
 
 		JDateChooser dateASO = new JDateChooser(new Date(), "dd/MM/yy");
 

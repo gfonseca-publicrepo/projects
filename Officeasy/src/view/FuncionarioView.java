@@ -40,7 +40,7 @@ public class FuncionarioView extends JFrame {
 		// FRAME
 		setResizable(false);
 		setTitle("Funcionários");
-		setSize(838, 590);
+		setSize(663, 590);
 		setResizable(false);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setLocationRelativeTo(null);

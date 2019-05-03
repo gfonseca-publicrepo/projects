@@ -10,6 +10,8 @@ import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableCellRenderer;
 import com.toedter.calendar.JDateChooser;
+
+import model.Funcionario;
 import model.DAO.ContratoDAO;
 import util.table.TableContratos;
 import javax.swing.JLabel;
@@ -31,7 +33,7 @@ public class ContratosView extends JFrame {
 	private JTable table;
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public ContratosView() {
+	public ContratosView(Funcionario usu) {
 
 		super("Contratos");
 		definirIcone();
@@ -116,7 +118,7 @@ public class ContratosView extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new Principal(null);
+				new Principal(usu);
 				dispose();
 
 			}

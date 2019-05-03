@@ -192,7 +192,7 @@ public class ModelosView extends JFrame {
 		// config
 
 		setResizable(false);
-		setTitle("Selecionar Modelos");
+		setTitle("Modelos");
 		setSize(1000, 590);
 		setResizable(false);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);

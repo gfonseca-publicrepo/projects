@@ -22,7 +22,7 @@ public class Mascaras {
 
 		try {
 
-			fSalario = new MaskFormatter("R$***.***,**");
+			fSalario = new MaskFormatter("R$**********"); // Max 10 caracteres
 
 			fSalario.setValidCharacters("0123456789");
 

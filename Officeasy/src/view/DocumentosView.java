@@ -7,6 +7,7 @@ import java.awt.GridBagLayout;
 import javax.swing.JTextField;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -117,14 +118,14 @@ public class DocumentosView extends JFrame {
 			}
 		});
 
-		JButton button_1 = new JButton("< Voltar");
-		button_1.addActionListener(new ActionListener() {
+		JButton btnVoltar = new JButton("< Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
 				new view.Principal(usu);
 			}
 		});
-		panelFuncao.add(button_1);
+		panelFuncao.add(btnVoltar);
 
 		JButton btnExibir = new JButton("Exibir");
 		btnExibir.addActionListener(new ActionListener() {
@@ -194,12 +195,13 @@ public class DocumentosView extends JFrame {
 		// config
 
 		setResizable(false);
-		setTitle("Selecionar Modelos");
+		setTitle("Documentos");
 		setSize(1000, 590);
 		setResizable(false);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setVisible(true);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagens/icon.png")));
 
 	}
 

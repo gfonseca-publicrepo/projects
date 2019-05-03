@@ -9,8 +9,8 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import model.Dependente;
-import util.Conexao;
-import util.FerramentaString;
+import util.ConexaoBD;
+import util.LimpaString;
 import util.MySQL;
 
 public class DependenteDAO {
@@ -21,7 +21,7 @@ public class DependenteDAO {
 
 			String sql = "insert into dependente values null,?,?,?,?,?,?";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 
@@ -54,7 +54,7 @@ public class DependenteDAO {
 
 			String sql = "insert into dependente (rg, cpf, nome, dtNascimento, parentesco, FKFuncionario) values (?,?,?,?,?,?)";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 
@@ -66,8 +66,8 @@ public class DependenteDAO {
 
 				java.sql.Date d1 = new java.sql.Date(d.getNascimento().getDate());
 
-				comando.setString(1, FerramentaString.limpaDoc(d.getRg()));
-				comando.setString(2, FerramentaString.limpaDoc(d.getCpf()));
+				comando.setString(1, LimpaString.limpaDoc(d.getRg()));
+				comando.setString(2, LimpaString.limpaDoc(d.getCpf()));
 				comando.setString(3, d.getNome());
 				comando.setDate(4, d1);
 				comando.setString(5, d.getGrau());
@@ -95,7 +95,7 @@ public class DependenteDAO {
 
 			String sql = "select * from dependente where FKFuncionario = ?";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 

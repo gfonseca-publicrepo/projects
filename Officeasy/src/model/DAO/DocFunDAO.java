@@ -6,9 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 import javax.swing.JOptionPane;
-
 import model.DocFun;
-import util.Conexao;
+import util.ConexaoBD;
 import util.MySQL;
 
 public class DocFunDAO {
@@ -21,7 +20,7 @@ public class DocFunDAO {
 
 			String sql = "insert into docfun (rg, orgaoemissor, dtEmissao, cpf, nomePai, nomeMae, ctps, pis, ultimoAso, FKFuncionario) values (?,?,?,?,?,?,?,?,?,?)";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 
@@ -65,7 +64,7 @@ public class DocFunDAO {
 
 			String sql = "select * from docfun where FKFuncionario = ?";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 
@@ -105,7 +104,7 @@ public class DocFunDAO {
 
 			String sql = "select id from docfun where FKFuncionario = ?";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 

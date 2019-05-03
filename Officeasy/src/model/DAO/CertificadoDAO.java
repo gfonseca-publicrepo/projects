@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import model.Certificado;
-import util.Conexao;
+import util.ConexaoBD;
 import util.MySQL;
 
 public class CertificadoDAO {
@@ -22,7 +22,7 @@ public class CertificadoDAO {
 
 			String sql = "insert into certificado (titulo, dtEmissao, instituicao, descricao, validade, FKDocFun) values (?,?,?,?,?,?)";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 
@@ -71,7 +71,7 @@ public class CertificadoDAO {
 
 			String sql = "select * from certificado where FKDocFun = ?";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 

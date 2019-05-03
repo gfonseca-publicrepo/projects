@@ -7,6 +7,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import model.Funcionario;
+
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import java.awt.FlowLayout;
@@ -17,12 +20,16 @@ import java.awt.event.ActionListener;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-@SuppressWarnings("serial")
 public class EquipamentosView extends JFrame {
+	/**
+	 * @author Gabriel
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField textBuscar;
 	private JTable table;
 
-	public EquipamentosView() {
+	public EquipamentosView(Funcionario usu) {
 
 		setResizable(false);
 		setTitle("Equipamentos");
@@ -76,7 +83,7 @@ public class EquipamentosView extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new Principal(null);
+				new Principal(usu);
 				dispose();
 			}
 		});

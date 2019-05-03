@@ -62,7 +62,7 @@ public class TableDocumento extends AbstractTableModel {
 		switch (column) {
 
 		case 0:
-			return "T�tulo";
+			return "Título";
 		case 1:
 			return "Autor";
 		case 2:

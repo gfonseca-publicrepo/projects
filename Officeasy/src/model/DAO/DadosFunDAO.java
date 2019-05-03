@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import model.DadosFun;
-import util.Conexao;
+import util.ConexaoBD;
 import util.MySQL;
 
 public class DadosFunDAO {
@@ -20,7 +20,7 @@ public class DadosFunDAO {
 
 			String sql = "insert into dadosfun (dtAdmissao, salario, estadoCivil, dtNascimento, cargaH, sexo, telefone, celular, email, FKMatricula) values (?,?,?,?,?,?,?,?,?,?)";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 
@@ -64,7 +64,7 @@ public class DadosFunDAO {
 
 			String sql = "select * from dadosfun where FKMatricula = ?";
 
-			Conexao conex = new Conexao(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
+			ConexaoBD conex = new ConexaoBD(MySQL.getURL(), MySQL.getDRIVER(), MySQL.getLOGIN(), MySQL.getSENHA());
 
 			Connection con = conex.obterConexao();
 
